@@ -1,1 +1,193 @@
-<h1>AAAHHH WHADDUP?</h1>
+<html>
+    <head>
+        <title>grangeMobile</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
+        <link href="style/someStyling.css" rel="stylesheet" type="text/css"/>
+        <script src="https://maps.googleapis.com/maps/api/js"></script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA33g-37yhggBHuZ9XDyz-yBc6vP0UZukk&callback=locatorMap"></script>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+        <script type="text/javascript" src="js/grangeFunctions.js"></script>
+    </head>
+    <body id="theBody">
+        
+        <!--Home Page-->
+        <div data-role="page" id="home">
+            <div data-role="header" data-position="fixed" style="height: 35px;">
+                <h1>Home</h1>
+                <a href="#location" data-role="none" data-transition="slide" data-direction="reverse"><img src="resources/arrowL.png" alt="" style="width: 25px; padding-top: 2px;"/></a>
+                <a href="#profile" data-role="none" data-transition="slide"><img src="resources/arrowR.png" alt="" style="width: 25px; padding-top: 2px;"/></a>
+            </div>
+            <div role="main" class="ui-content">
+                <h1 style="text-align: center; font-size: 38px;">Welcome to the grangeMobile app.</h1>
+                <p style="font-size: 24px;">You can get your location on the <a href="#location" data-transition="slide" data-direction="reverse">Location</a> 
+                    tab and you can access college data, social media and more on your <a href="#profile" data-transition="slide">Profile.</a>
+                    Interested in furthering your education? Talk to our staff about PhD opportunities in DIT:
+                </p>
+                 
+                <video width="300" height="220" style="display: block; margin: 0 auto;" controls>
+                    <source src="DITPhD.mp4" type="video/mp4">
+                    Your browser does not support the <code>video</code> tag.
+                </video>
+                <h2>Keep informed by following the DIT Twitter:</h2>
+                <div id="timeline_results"></div>
+            </div>
+            <div data-role="footer" data-position="fixed">
+                <div data-role="navbar" data-position="fixed">
+                    <ul>
+                        <li><a href="#location" data-transition="slide" data-direction="reverse">Location</a></li>
+                        <li><a href="#menu" class="ui-btn-active ui-state-persist">Home</a></li>
+                        <li><a href="#profile" data-transition="slide">Profile</a></li>
+                    </ul>
+                </div> 
+            </div>
+        </div>
+        
+        <!--Location Page-->
+        <div data-role="page" id="location">
+            <div data-role="header" data-position="fixed" style="height: 35px;">
+                <h1>Location</h1>
+                <a href="#profile" data-role="none" data-transition="slide" data-direction="reverse"><img src="resources/arrowL.png" alt="" style="width: 25px; padding-top: 2px;"/></a>
+                <a href="#home" data-role="none" data-transition="slide"><img src="resources/arrowR.png" alt="" style="width: 25px; padding-top: 2px;"/></a>
+            </div>
+            <div role="main" class="ui-content">
+                <h2 id="where" style="text-align: center; margin-top: 5px; line-height: 5%;">You Are Here:</h2>
+                <div id="mapOne">Loading...</div>
+                <button class="ui-btn ui-btn-inline ui-icon-location ui-btn-icon-left" id="toggleList">Find a DIT</button>
+                <button class="ui-btn ui-btn-inline ui-icon-location ui-btn-icon-left" onclick="reLoad()" style="float: right;">Find Me!</button>
+                <div id="locationList" data-role="controlgroup" data-type="vertical" onclick="scrollUp()">
+                    <a href="#" class="ui-btn ui-icon-location ui-btn-icon-left" id="aungier">DIT Aungier Street</a>
+                    <a href="#" class="ui-btn ui-icon-location ui-btn-icon-left" id="kevin">DIT Kevin Street</a>
+                    <a href="#" class="ui-btn ui-icon-location ui-btn-icon-left" id="bolton">DIT Bolton Street</a>
+                    <a href="#" class="ui-btn ui-icon-location ui-btn-icon-left" id="grange">DIT GrangeGorman</a>
+                </div>
+            </div>
+            <div data-role="footer" data-position="fixed">
+                <div data-role="navbar" data-position="fixed">
+                    <ul>
+                        <li><a href="#location" class="ui-btn-active ui-state-persist">Location</a></li>
+                        <li><a href="#home" data-transition="slide">Home</a></li>
+                        <li><a href="#profile" data-transition="slide" data-direction="reverse">Profile</a></li> 
+                    </ul>
+                </div> 
+            </div>
+        </div>
+        
+        <!--Profile Page-->
+        <div data-role="page" id="profile">
+            <div data-role="header" data-position="fixed" style="height: 35px;">
+                <h1>Profile</h1>
+                <a href="#home" data-role="none" data-transition="slide" data-direction="reverse"><img src="resources/arrowL.png" alt="" style="width: 25px; padding-top: 2px;"/></a>
+                <a href="#location" data-role="none" data-transition="slide"><img src="resources/arrowR.png" alt="" style="width: 25px; padding-top: 2px;"/></a>
+            </div>
+            <div role="main" class="ui-content">
+                <div id="picture" style="display: block; margin: 0 auto; width: 90px;">    
+                    <a href="#selectPic" data-rel="popup"><img src="resources/overlay.png" id="overlay" style="width: 80px;" alt=""/></a>
+                    <img src="resources/profileIcon.png" style="width: 80px;" alt=""/>
+                </div>
+                <div id="welcome">
+                    <h1 style="text-align: center;">Welcome to your profile.</h1>
+                    <p>Here you can view/send messages, view module details, contact the lecturers and your classmates.
+                    Compile this page using <a href="#" id="compile">FaceBook</a>.</p>
+                </div>
+                <div id="compileFB"></div>
+                <button id="toggleMessages">My Messages</button>
+                <div id="messagesData"></div>
+                <button id="toggleLecturers">Lecturer Contacts</button>
+                <div id="lecturersData"></div>
+                <button id="toggleStudents">Coursemates</button>
+                <ul data-role="listview" id="studentsData" style="margin-top: 20px;"></ul>
+                
+                <!--Picture Pop Up-->
+                <div data-role="popup" data-position-to="window" id="selectPic" data-overlay-theme="a">
+                    <h3>Choose profile pic:</h3>
+                    <input type="file"> 
+                    <p>Flickr:</p>
+                    <div id="flickrImages">
+                        <button id="flickrButton">Get Images</button>
+                    </div> 
+                    <a href="#" class="ui-btn ui-btn-inline" data-rel="back">OK</a>
+                </div>
+            </div>
+       
+            <div data-role="footer" data-position="fixed">
+                <div data-role="navbar" data-position="fixed">
+                    <ul>
+                        <li><a href="#location" data-transition="slide">Location</a></li>
+                        <li><a href="#home" data-transition="slide" data-direction="reverse">Home</a></li>
+                        <li><a href="#profile" class="ui-btn-active ui-state-persist">Profile</a></li>
+                    </ul>
+                </div> 
+            </div>
+        </div>
+        <script>
+            //3d PARTI APIs SECTION
+            //Twitter Timeline API
+            var graphURL = "http://localhost:8888/php_twitter_brian/timeline_response.php";
+            $(document).ready(function()
+            {
+                $.getJSON(graphURL, function(data)
+                {
+                    $.each(data.tweets, function(i,tweet)
+                    {
+                        $("#timeline_results").append("<p>"+ i + ") " + tweet.created_at + " --> " + tweet.text + "</p>");
+		    });
+                });
+            });
+            
+            //Facebook graph API
+            var graphURL = "https://graph.facebook.com";
+            $("#compile").click(function()
+            {
+                $.getJSON(graphURL,
+                {
+                    id: "108668683037085",
+                    access_token:"EAADGaZAva2L4BAN6tctQHe4qe1akcLuxhg2l70K48aLeZBJPvjU23m0AQbTqKFwJ03l88I06Givm8UvGiREKJorZBHe36gZBqIlZAx6Hr7R9w6BoVJj9dPLZA71s821iR17zuGxh3Pj1nyRndApKvr8V8GVYxijo1YIwxoD9GLqdggUzf9b5JAIFyXeck402AZD"
+                },
+                function(data)
+                {
+                    $("#compileFB").append("<h3><small>Name: </small>" + data["name"]+ "</h3>");
+                    $("#compileFB").append("<h3><small>Birthday: </small>" + data["birthday"] + "</h3>");
+                    $("#compileFB").append("<h3><small>e-mail: </small>" + data.email + "</h3>");
+                    $("#compileFB").append("<h3><small>Employer: </small>" + data.work[0].employer.name + "</h3>");
+                    $("#compileFB").append("<h3><small>Position: </small>" + data.work[0].position.name + "</h3>");
+                });
+            });
+            
+            //Delete welcome div 
+            $(document).ready(function()
+            {
+                $("#compile").click(function()
+                {
+                    $("#welcome").remove();
+                });
+            });
+            
+            //Flickr API
+            var flickAPI = "https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&jsoncallback=?";
+            var src;
+            $("#flickrButton").click(function()
+            {
+                $.getJSON(flickAPI,
+                {
+                    photoset_id:"72157680186994313",
+                    per_page:"10",
+                    page:"1",
+                    api_key:"dc2026f2a526763cc53d11142b67138c",
+                    format: "json"
+                },
+                
+                function(data)
+                {
+                    $.each(data.photoset.photo, function(i,item)
+                    {
+                        src = "http://farm"+ item.farm +".static.flickr.com/"+ item.server +"/"+ item.id +"_"+ item.secret +"_m.jpg";
+                        $("<img/>").attr("src", src).appendTo("#flickrImages");
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>
