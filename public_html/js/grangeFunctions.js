@@ -61,10 +61,7 @@
 
             $(document).ready(function()
             {
-                $("#messagesData").hide();
-                $("#lecturersData").hide();
-                $("#studentsData").hide();
-                $("#locationList").hide();
+                $(".data").hide();
                 
                 $("#toggleMessages").click(function()
                 {
