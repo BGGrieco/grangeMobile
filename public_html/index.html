@@ -1,9 +1,5 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+<!--©Brian Grieco 2017-->
 <html>
     <head>
         <title>grangeMobile</title>
@@ -63,7 +59,7 @@ and open the template in the editor.
                 <div id="mapOne">Loading...</div>
                 <button class="ui-btn ui-btn-inline ui-icon-location ui-btn-icon-left" id="toggleList">Find a DIT</button>
                 <button class="ui-btn ui-btn-inline ui-icon-location ui-btn-icon-left" onclick="reLoad()" style="float: right;">Find Me!</button>
-                <div id="locationList" data-role="controlgroup" data-type="vertical" onclick="scrollUp()">
+                <div id="locationList" class="data" data-role="controlgroup" data-type="vertical" onclick="scrollUp()">
                     <a href="#" class="ui-btn ui-icon-location ui-btn-icon-left" id="aungier">DIT Aungier Street</a>
                     <a href="#" class="ui-btn ui-icon-location ui-btn-icon-left" id="kevin">DIT Kevin Street</a>
                     <a href="#" class="ui-btn ui-icon-location ui-btn-icon-left" id="bolton">DIT Bolton Street</a>
@@ -100,11 +96,11 @@ and open the template in the editor.
                 </div>
                 <div id="compileFB"></div>
                 <button id="toggleMessages">My Messages</button>
-                <div id="messagesData"></div>
+                <div id="messagesData" class="data"></div>
                 <button id="toggleLecturers">Lecturer Contacts</button>
-                <div id="lecturersData"></div>
+                <div id="lecturersData" class="data"></div>
                 <button id="toggleStudents">Coursemates</button>
-                <ul data-role="listview" id="studentsData" style="margin-top: 20px;"></ul>
+                <ul data-role="listview" id="studentsData" style="margin-top: 20px;" class="data"></ul>
                 
                 <!--Picture Pop Up-->
                 <div data-role="popup" data-position-to="window" id="selectPic" data-overlay-theme="a">
