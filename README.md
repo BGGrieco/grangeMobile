@@ -7,6 +7,8 @@ and social media APIs implementation. Profile section allows access to details v
 which ajax calls where made through JSON to fetch server data. JSON syntax and string interpolation was
 then used to organise the data in list views and create links to other pages or functions.
 
+Please note JSON calls to server do not work here, as MAMP was used to access the SQL tables locally.
+
 Home section demonstrates a simple instance of the HTML <video> tag and the Twitter feed API.
 
 Location section shows use of HTML's geolocate function, implemented with the GoogleMaps API to continuously 
