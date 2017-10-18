@@ -3,86 +3,77 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */            
-            //JSON CALLS SECTION
-            // jSON call for messages 
-            $(document).ready(function()
+        //JSON CALLS SECTION
+        // jSON call for messages 
+        $(document).ready(function()
+        {
+            $.getJSON("http://localhost:8888/php_this/json-data-messages.php", function(data)
             {
-                $.getJSON("http://localhost:8888/php_this/json-data-messages.php", function(data)
+		$.each(data.messages, function(index, message)
                 {
-		    $.each(data.messages, function(index, message)
-                    {
-  			$("#messagesData").append("<p><b>Subject: </b><a href='#" + message.messageNumber + "'>" + message.messageTitle + "</a>\n\
-                        <b> From: </b><a href='mailto:" + message.messageMail + "'>" + message.fromLecturerNumber + "</a>\n\
-                        <b> Date: </b>" + message.messageDate + "</p></a>");
-                        $("#theBody").append("<div data-role='page' id=" + message.messageNumber + ">\n\
-                        <div data-role='header' data-add-back-btn='true'><h1>Message Details</h1></div>\n\
-                        <div role='main' class='ui-content' id='content'>\n\
-                        <h1>Subject: " + message.messageTitle + "</h1>\n\
-                        <h2>From: " + message.fromLecturerNumber + "</h2>\n\
-                        <h2>Sent on: " + message.messageDate + "</h2>\n\
-                        <p>"+ message.messageBody + "</p>\n\
-                        <a href='mailto:" + message.messageMail + "'>Reply</a>");
-                    });
-                });
-    	    });
+                    $("#messagesData").append("<p><b>Subject: </b><a href='#" + message.messageNumber + "'>" + message.messageTitle + "</a>\n\
+                    <b> From: </b><a href='mailto:" + message.messageMail + "'>" + message.fromLecturerNumber + "</a>\n\
+                    <b> Date: </b>" + message.messageDate + "</p></a>");
+                    $("#theBody").append("<div data-role='page' id=" + message.messageNumber + ">\n\
+                    <div data-role='header' data-add-back-btn='true'><h1>Message Details</h1></div>\n\
+                    <div role='main' class='ui-content' id='content'>\n\
+                    <h1>Subject: " + message.messageTitle + "</h1>\n\
+                    <h2>From: " + message.fromLecturerNumber + "</h2>\n\
+                    <h2>Sent on: " + message.messageDate + "</h2>\n\
+                    <p>"+ message.messageBody + "</p>\n\
+                    <a href='mailto:" + message.messageMail + "'>Reply</a>");
+                });
+            });
             
             // jSON call for lecturer details
-            $(document).ready(function()
+            $.getJSON("http://localhost:8888/php_this/json-data-lecturers.php", function(data)
             {
-                $.getJSON("http://localhost:8888/php_this/json-data-lecturers.php", function(data)
+		$.each(data.lecturers, function(index, lecturer)
                 {
-		    $.each(data.lecturers, function(index, lecturer)
-                    {
-  			$("#lecturersData").append("<p>" + lecturer.lastName + ", " + lecturer.firstName + ": <a href='mailto:" + lecturer.email + "'>" + lecturer.email + "</a></p>");
-		    });
-                });
-    	    });
+                    $("#lecturersData").append("<p>" + lecturer.lastName + ", " + lecturer.firstName + ": <a href='mailto:" + lecturer.email + "'>" + lecturer.email + "</a></p>");
+		});
+            });
             
             //jSON call for student details
-            $(document).ready(function()
+            $.getJSON("http://localhost:8888/php_this/json-data-students.php", function(data) 
             {
-                $.getJSON("http://localhost:8888/php_this/json-data-students.php", function(data) 
+                $.each(data.students, function(index, student) 
                 {
-                    $.each(data.students, function(index, student) 
-                    {
-                        $("#studentsData").append("<li><a href='#" + student.firstName + "'>" + student.lastName + ", " + student.firstName + "</a></li>");
-                        $("#theBody").append("<div data-role='page' id=" + student.firstName + ">\n\
-                        <div data-role='header' data-add-back-btn='true'><h1>Course Details</h1></div>\n\
-                        <div role='main' class='ui-content' id='content'><ul data-role='listview' id='list2'>\n\
-                        <li>Student ID: " + student.studentID + "</li>\n\
-                        <li>Module No1: " + student.moduleNo1 + "</li>\n\
-                        <li>Module No2: " + student.moduleNo2 + "</li>\n\
-                        <li>Course ID: " + student.courseID + "</li>\n\
-                        </ul></div><div data-role='footer' data-position='fixed'>\n\
-                        <a href='www.dit.ie' target='_blank'>DIT</h4></div></div>");
-                    });
+                    $("#studentsData").append("<li><a href='#" + student.firstName + "'>" + student.lastName + ", " + student.firstName + "</a></li>");
+                    $("#theBody").append("<div data-role='page' id=" + student.firstName + ">\n\
+                    <div data-role='header' data-add-back-btn='true'><h1>Course Details</h1></div>\n\
+                    <div role='main' class='ui-content' id='content'><ul data-role='listview' id='list2'>\n\
+                    <li>Student ID: " + student.studentID + "</li>\n\
+                    <li>Module No1: " + student.moduleNo1 + "</li>\n\
+                    <li>Module No2: " + student.moduleNo2 + "</li>\n\
+                    <li>Course ID: " + student.courseID + "</li>\n\
+                    </ul></div><div data-role='footer' data-position='fixed'>\n\
+                    <a href='www.dit.ie' target='_blank'>DIT</h4></div></div>");
                 });
             });
 
-            $(document).ready(function()
+            $(".data").hide();
+                
+            $("#toggleMessages").click(function()
             {
-                $(".data").hide();
-                
-                $("#toggleMessages").click(function()
-                {
-                    $("#messagesData").toggle();
-                });
-                
-                $("#toggleLecturers").click(function()
-                {
-                    $("#lecturersData").toggle();
-                });
-                
-                $("#toggleStudents").click(function()
-                {
-                    $("#studentsData").toggle();
-                });
-                
-                $("#toggleList").click(function()
-                {
-                    $("#locationList").toggle();
-                });
+                $("#messagesData").toggle();
             });
+                
+            $("#toggleLecturers").click(function()
+            {
+                $("#lecturersData").toggle();
+            });
+                
+            $("#toggleStudents").click(function()
+            {
+                $("#studentsData").toggle();
+            });
+                
+            $("#toggleList").click(function()
+            {
+                $("#locationList").toggle();
+            });
+        });
             
             //GEOLOCATION SECTION
             //Onload, geolocate and set global variables
