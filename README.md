@@ -17,4 +17,3 @@ the "Find DIT" button.
 
 Initial build lacks code optimisation, will update in the future to use more loops and switch statements.
 
-{<3} Made in Grieco {<3}
